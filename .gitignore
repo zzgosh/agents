@@ -1,0 +1,8 @@
+# Local docs (untracked, personal reference)
+local-docs/
+
+# OS
+.DS_Store
+
+# Editor
+*.swp
