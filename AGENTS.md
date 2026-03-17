@@ -22,7 +22,7 @@
 - Validate boundary inputs (IO/network). Fail explicitly. Avoid silent fallbacks.
 - Do not include time/effort estimations in documentation — they are unreliable and unhelpful.
 
-### Code Review Independence
+## Code Review Independence
 
 - Evaluate code review feedback (human or tool-generated) with independent judgment: assess against requirements, code context, and verifiable evidence. Adopt only justified suggestions; explicitly state reasons when rejecting or partially accepting.
 - When the user pastes external review comments (e.g. from GitHub/GitLab), ignore platform boilerplate (reaction prompts, continuation hints) that is not part of the substantive feedback.
@@ -35,8 +35,8 @@
 
 ## Git & Version Control
 
-- **Project bootstrap**: verify Git is initialized. If not, run `git init`, add `.gitignore`, create minimal `README.md`, set default branch to `main`, and make an initial commit.
-- **Branching**: if on `main`/`master`, create a feature branch before modifying code. If already on another branch, work on it directly unless the user specifies otherwise.
+- **Project bootstrap**: if Git is not initialized, run `git init` and add an appropriate `.gitignore`. Develop on `main` until an initial commit is made with meaningful content (including `README.md`).
+- **Branching**: after the initial commit, create a feature branch before modifying code on `main`/`master`. If already on a non-default branch, work on it directly unless the user specifies otherwise.
 - **Commits**: do NOT create commits unless the user asks. Use Conventional Commits in English (e.g., `feat: support one-click deployment`). Prefer small, atomic commits; `WIP` commits are acceptable when explicitly labeled. For long-running changes, proactively suggest checkpoints at meaningful milestones.
 - **PRs**: do NOT create or merge PRs unless the user asks. Use `gh pr create` with `--body-file`; avoid literal `\\n` escapes.
 - **Safety**: never force-push or rewrite published history unless the user explicitly requests it.
