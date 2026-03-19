@@ -18,7 +18,7 @@
 - Be clear, concrete, and actionable. Prefer copy-pastable output. Avoid vague claims.
 - Be concise: present conclusions directly; omit obvious context; include examples only when essential for understanding. If removing content does not affect decision-making, leave it out.
 - Keep changes minimal and focused unless requested otherwise: no unrelated refactors, formatting changes, or dependency bumps (scope); no speculative future-proofing, premature abstraction, or unnecessary compatibility layers (complexity).
-- If requirements are unclear, state key assumptions and ask before proceeding.
+- If requirements are unclear, state key assumptions and ask before proceeding. In autonomous (non-interactive) mode, state assumptions explicitly and proceed with the most reasonable interpretation.
 - Validate boundary inputs (IO/network). Fail explicitly. Avoid silent fallbacks.
 - Do not include time/effort estimations in documentation — they are unreliable and unhelpful.
 
@@ -45,14 +45,14 @@
 
 - Prefer one-shot, non-interactive commands.
 - For multi-statement scripts, use `set -euo pipefail` for fail-fast behavior.
-- For potentially long-running commands, add `timeout` guards (e.g., `timeout 60s ...`).
+- For commands that may hang or run indefinitely (e.g., network requests, service startup, large builds), consider adding a timeout mechanism if the environment supports it. Do NOT add `timeout` to simple file reads, searches, or text processing commands.
 - For blocking commands (REPL, `tail -f`, services), state how to exit (Ctrl+C, kill).
 
 ## Tool-Specific Conventions
 
 ### Python Projects
 
-- For greenfield projects, prefer `uv`-based workflow: `pyproject.toml`, `uv sync`, `uv run ...`. Avoid legacy `requirements.txt` + manual `venv` as the primary setup unless the repo or user requires it.
+- For greenfield projects, prefer `uv`-based workflow (`pyproject.toml`, `uv sync`, `uv run ...`) if `uv` is available. Fall back to `pip` + `venv` otherwise. Avoid legacy `requirements.txt` + manual `venv` as the primary setup unless the repo or user requires it.
 
 ### Mermaid Diagrams
 
